@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>fail2ban</Name>
+  <Repository>crazymax/fail2ban:latest</Repository>
+  <Registry>https://hub.docker.com/r/crazymax/fail2ban</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>true</Privileged>
+  <Support>https://forums.unraid.net/topic/119186-fail2ban-setup-with-nginx-and-cloudflare-tunnels/</Support>
+  <Project>http://www.fail2ban.org/wiki/index.php/Main_Page</Project>
+  <Overview>Fail2ban container &#xD;
+Icon URL : https://raw.githubusercontent.com/FrankM77/docker-fail2ban/master/Fail2ban_logo.png&#xD;
+&#xD;
+You must add a path to your container log file that you want fail2ban to monitor. &#xD;
+&#xD;
+Important: If you are using Nginx Proxy Manger with Cloudflare tunnels then you need to pass the client IP to your container that you want fail2ban to protect.  For instance I have fail2ban protecting my Jellyfin container but inititally in the Jellyfin logfiles it would log the IP address as 172.18.0.1, so in order to log the real connecting client IP you need to go into Nginx Proxy manager---&amp;gt;proxy host----&amp;gt;Advanced------&amp;gt;Under custom configuration add "real ip header CF-Connecting-IP"  without the quotes. You will then notice that your container log (in my case jellyfin) will have the real ip of the connecting user/client.  </Overview>
+  <Category>Security: Tools:</Category>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>https://raw.githubusercontent.com/FrankM77/docker-fail2ban/master/Fail2ban_logo.png</Icon>
+  <ExtraParams>--cap-add=NET_ADMIN --cap-add=NET_RAW</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1643318245</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Description>Fail2ban container &#xD;
+Icon URL : https://raw.githubusercontent.com/FrankM77/docker-fail2ban/master/Fail2ban_logo.png&#xD;
+&#xD;
+You must add a path to your container log file that you want fail2ban to monitor. &#xD;
+&#xD;
+Important: If you are using Nginx Proxy Manger with Cloudflare tunnels then you need to pass the client IP to your container that you want fail2ban to protect.  For instance I have fail2ban protecting my Jellyfin container but inititally in the Jellyfin logfiles it would log the IP address as 172.18.0.1, so in order to log the real connecting client IP you need to go into Nginx Proxy manager---&amp;gt;proxy host----&amp;gt;Advanced------&amp;gt;Under custom configuration add "real ip header CF-Connecting-IP"  without the quotes. You will then notice that your container log (in my case jellyfin) will have the real ip of the connecting user/client.  </Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/var/log</HostDir>
+      <ContainerDir>/var/log</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/fail2ban</HostDir>
+      <ContainerDir>/data</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment/>
+  <Labels/>
+  <Config Name="LOG_FILE" Target="/var/log" Default="" Mode="rw" Description="Container Path: /var/log" Type="Path" Display="always" Required="false" Mask="false">/var/log</Config>
+  <Config Name="data" Target="/data" Default="" Mode="rw" Description="Container Path: /data" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/fail2ban</Config>
+</Container>
